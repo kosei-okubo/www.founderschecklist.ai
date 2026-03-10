@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FoundersCheckList.AI — 1,000 pre-built checklists, 100 AI business coaches, and 100+ integrations. Free to start. Built for entrepreneurs who take action." />
+  <title>FoundersCheckList.AI — Your AI Business Action Partner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@1,600&display=swap" rel="stylesheet" />
+  <style>
+
+  :root {
+    --blue:     #1a56e8;
+    --blue-dk:  #1240c0;
+    --blue-lt:  #eef3fd;
+    --blue-md:  #dbeafe;
+    --green:    #16a34a;
+    --green-lt: #f0fdf4;
+    --amber:    #d97706;
+    --ink:      #111827;
+    --ink-2:    #374151;
+    --ink-3:    #6b7280;
+    --ink-4:    #9ca3af;
+    --rule:     #e5e7eb;
+    --rule-2:   #f3f4f6;
+    --white:    #ffffff;
+    --sans:     'Plus Jakarta Sans', system-ui, sans-serif;
+    --serif:    'Lora', Georgia, serif;
+    --ease:     cubic-bezier(0.22, 1, 0.36, 1);
+    --shadow:   0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+    --shadow-lg:0 12px 40px rgba(0,0,0,.10), 0 3px 10px rgba(0,0,0,.05);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #fff; color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  body { overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: #bfdbfe; color: var(--ink); }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+
+  @keyframes rise { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes check-in { 0%{transform:scale(0);opacity:0} 65%{transform:scale(1.15)} 100%{transform:scale(1);opacity:1} }
+  .r0{animation:rise .55s var(--ease) both}
+  .r1{animation:rise .55s .08s var(--ease) both}
+  .r2{animation:rise .55s .16s var(--ease) both}
+  .r3{animation:rise .55s .24s var(--ease) both}
+  .r4{animation:rise .55s .32s var(--ease) both}
+
+  /* ── NAV ── */
+  nav { position:fixed; inset:0 0 auto; z-index:100; background:rgba(255,255,255,.94); backdrop-filter:blur(12px); border-bottom:1px solid var(--rule); }
+  .nav-in { display:flex; align-items:center; height:60px; gap:1.5rem; }
+  .nav-logo { display:flex; align-items:center; gap:.55rem; font-size:15px; font-weight:800; color:var(--ink); letter-spacing:-.02em; flex-shrink:0; }
+  .nav-logo-mark { width:28px; height:28px; background:var(--blue); border-radius:6px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; flex-shrink:0; }
+  .logo-ai { color:var(--blue); }
+  .nav-links { display:flex; gap:.1rem; margin-left:auto; }
+  .nav-links a { font-size:13.5px; font-weight:500; color:var(--ink-3); padding:.4rem .85rem; border-radius:7px; transition:background .15s,color .15s; }
+  .nav-links a:hover { background:var(--rule-2); color:var(--ink); }
+  .nav-cta { background:var(--blue) !important; color:#fff !important; font-weight:600 !important; padding:.5rem 1.15rem !important; border-radius:8px !important; transition:background .15s !important; }
+  .nav-cta:hover { background:var(--blue-dk) !important; }
+
+  /* ── HERO ── */
+  .hero { padding:7.5rem 0 5rem; background:linear-gradient(180deg,#f5f8ff 0%,#fff 100%); border-bottom:1px solid var(--rule); }
+  .hero-in { display:grid; grid-template-columns:1fr 400px; gap:4.5rem; align-items:center; }
+
+  .hero-eyebrow { display:inline-flex; align-items:center; gap:.45rem; background:var(--blue-lt); color:var(--blue); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:.3rem .85rem; border-radius:100px; margin-bottom:1.5rem; }
+  .eyebrow-dot { width:5px; height:5px; border-radius:50%; background:var(--blue); }
+
+  h1 { font-size:clamp(2.2rem,4.5vw,3.4rem); font-weight:800; line-height:1.1; letter-spacing:-.03em; color:var(--ink); margin-bottom:1.25rem; }
+  h1 .serif { font-family:var(--serif); font-style:italic; color:var(--blue); }
+
+  .hero-desc { font-size:17px; color:var(--ink-2); line-height:1.78; margin-bottom:2rem; max-width:480px; }
+
+  .hero-btns { display:flex; align-items:center; gap:.85rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+
+  .btn-primary { display:inline-flex; align-items:center; gap:.5rem; background:var(--blue); color:#fff; font-weight:700; font-size:15px; padding:.85rem 1.75rem; border-radius:9px; transition:background .15s,transform .15s,box-shadow .15s; }
+  .btn-primary:hover { background:var(--blue-dk); transform:translateY(-1px); box-shadow:0 6px 20px rgba(26,86,232,.25); }
+
+  .btn-secondary { display:inline-flex; align-items:center; gap:.5rem; border:1.5px solid var(--rule); color:var(--ink-2); font-weight:600; font-size:15px; padding:.85rem 1.4rem; border-radius:9px; transition:border-color .15s,background .15s; }
+  .btn-secondary:hover { border-color:#d1d5db; background:var(--rule-2); }
+
+  .hero-free { display:flex; align-items:center; gap:.5rem; font-size:14px; color:var(--green); font-weight:600; }
+  .hero-free-badge { background:var(--green-lt); border:1px solid #bbf7d0; color:var(--green); font-size:12px; font-weight:700; padding:.2rem .65rem; border-radius:100px; }
+
+  .trust-row { display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; padding-top:.75rem; border-top:1px solid var(--rule); margin-top:.75rem; }
+  .trust-item { display:flex; align-items:center; gap:.4rem; font-size:12.5px; color:var(--ink-3); font-weight:500; }
+  .trust-ic { width:15px; height:15px; background:var(--green); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:8px; flex-shrink:0; }
+
+  /* app card */
+  .app-card { background:#fff; border:1.5px solid var(--rule); border-radius:16px; overflow:hidden; box-shadow:var(--shadow-lg); }
+  .app-hd { background:linear-gradient(135deg,#6b3ef0,#c4355b,#e8400c); padding:1rem 1.2rem; display:flex; align-items:center; gap:.7rem; }
+  .app-hd-ic { width:30px; height:30px; background:rgba(255,255,255,.22); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+  .app-hd-title { font-size:13.5px; font-weight:800; color:#fff; letter-spacing:-.01em; flex:1; }
+  .app-bd { padding:1rem 1.1rem; }
+  .app-sec { margin-bottom:.85rem; }
+  .app-sec-hd { font-size:11.5px; font-weight:700; color:var(--ink-3); letter-spacing:.04em; padding-bottom:.35rem; border-bottom:1px solid var(--rule); margin-bottom:.45rem; display:flex; justify-content:space-between; }
+  .app-task { display:flex; align-items:center; gap:.6rem; padding:.5rem .6rem; background:#fafafa; border:1px solid var(--rule); border-radius:7px; margin-bottom:.3rem; font-size:12.5px; color:var(--ink-2); font-weight:500; }
+  .app-task:last-child{margin-bottom:0}
+  .app-cb { width:16px; height:16px; border-radius:4px; border:1.5px solid #d1d5db; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:9px; }
+  .app-task.done .app-cb { background:#6b3ef0; border-color:#6b3ef0; color:#fff; animation:check-in .35s var(--ease) both; }
+  .app-task.done .app-lbl { text-decoration:line-through; color:var(--ink-4); }
+  .app-meta { margin-left:auto; font-size:10.5px; color:var(--ink-4); flex-shrink:0; }
+  .app-chips { display:flex; gap:.35rem; margin-bottom:.6rem; flex-wrap:wrap; }
+  .app-chip { display:inline-flex; align-items:center; gap:.3rem; padding:.25rem .7rem; border-radius:100px; font-size:11px; font-weight:700; border:1.5px solid; }
+  .chip-a { background:#f3f0ff; border-color:#c4b5fd; color:#6b3ef0; }
+  .chip-c { background:#f0fdf4; border-color:#86efac; color:#16a34a; }
+  .chip-s { background:#fff7ed; border-color:#fdba74; color:#ea580c; }
+  .app-ai { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:.7rem .75rem; font-size:11.5px; line-height:1.6; color:#92400e; }
+  .app-ai .hot { font-weight:700; color:#c2410c; }
+
+  /* ── NUMBERS BAND ── */
+  .numbers { padding:0; background:#fff; border-bottom:1px solid var(--rule); }
+  .numbers-in { display:grid; grid-template-columns:repeat(4,1fr); }
+  .num-cell { padding:2rem 1.5rem; text-align:center; border-right:1px solid var(--rule); transition:background .15s; }
+  .num-cell:last-child { border-right:none; }
+  .num-cell:hover { background:var(--rule-2); }
+  .num-big { font-size:2.25rem; font-weight:800; letter-spacing:-.04em; color:var(--ink); line-height:1; }
+  .num-big span { color:var(--blue); }
+  .num-label { font-size:13px; color:var(--ink-3); margin-top:.35rem; font-weight:500; }
+
+  /* ── SECTION COMMON ── */
+  .sec-tag { font-size:12px; font-weight:700; color:var(--blue); letter-spacing:.08em; text-transform:uppercase; margin-bottom:.55rem; }
+  .sec-title { font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:800; letter-spacing:-.03em; line-height:1.15; color:var(--ink); margin-bottom:.75rem; }
+  .sec-title .serif { font-family:var(--serif); font-style:italic; color:var(--blue); }
+  .sec-sub { font-size:16px; color:var(--ink-3); line-height:1.72; margin-bottom:3rem; max-width:560px; }
+
+  /* ── WHAT IT SOLVES ── */
+  .solves { padding:5.5rem 0; border-bottom:1px solid var(--rule); background:#fafbff; }
+  .solves-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .solve-card { background:#fff; border:1.5px solid var(--rule); border-radius:12px; padding:1.6rem; display:flex; gap:1rem; align-items:flex-start; transition:border-color .2s,box-shadow .2s,transform .2s var(--ease); }
+  .solve-card:hover { border-color:#bfdbfe; box-shadow:var(--shadow); transform:translateY(-2px); }
+  .solve-icon { font-size:1.5rem; flex-shrink:0; margin-top:2px; }
+  .solve-title { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:.35rem; letter-spacing:-.01em; }
+  .solve-desc { font-size:13.5px; color:var(--ink-3); line-height:1.7; }
+
+  /* ── HOW ── */
+  .how { padding:5.5rem 0; border-bottom:1px solid var(--rule); }
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+  .step { position:relative; }
+  .step-connector { position:absolute; top:20px; left:calc(100% + .5rem); width:calc(100% - 1rem); height:1px; background:var(--rule); pointer-events:none; }
+  .steps .step:last-child .step-connector { display:none; }
+  .step-num { width:40px; height:40px; background:var(--blue); border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; font-weight:800; margin-bottom:1rem; }
+  .step-title { font-size:16px; font-weight:700; color:var(--ink); margin-bottom:.45rem; letter-spacing:-.01em; }
+  .step-desc { font-size:14px; color:var(--ink-3); line-height:1.72; }
+
+  /* ── BIG 3 PILLARS ── */
+  .pillars { padding:5.5rem 0; border-bottom:1px solid var(--rule); background:#fafbff; }
+  .pillars-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .pillar { background:#fff; border:1.5px solid var(--rule); border-radius:14px; padding:2rem 1.75rem; position:relative; overflow:hidden; transition:box-shadow .2s,transform .2s var(--ease); }
+  .pillar:hover { box-shadow:var(--shadow-lg); transform:translateY(-3px); }
+  .pillar-accent { position:absolute; top:0; left:0; right:0; height:3px; }
+  .pa-blue { background:var(--blue); }
+  .pa-purple { background:#6b3ef0; }
+  .pa-green { background:var(--green); }
+  .pillar-num { font-size:3rem; font-weight:800; letter-spacing:-.04em; color:var(--rule); line-height:1; margin-bottom:.75rem; }
+  .pillar-title { font-size:18px; font-weight:800; color:var(--ink); margin-bottom:.6rem; letter-spacing:-.02em; }
+  .pillar-num-highlight { color:var(--blue); }
+  .pillar-desc { font-size:14px; color:var(--ink-3); line-height:1.72; margin-bottom:1.25rem; }
+  .pillar-examples { display:flex; flex-direction:column; gap:.35rem; }
+  .pillar-ex { display:flex; align-items:flex-start; gap:.5rem; font-size:13px; color:var(--ink-2); }
+  .pillar-ex-dot { width:5px; height:5px; border-radius:50%; background:var(--blue); flex-shrink:0; margin-top:6px; }
+
+  /* ── AI COACHES ── */
+  .coaches { padding:5.5rem 0; border-bottom:1px solid var(--rule); }
+  .coaches-intro { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-bottom:3rem; }
+  .coaches-visual { background:var(--rule-2); border:1.5px solid var(--rule); border-radius:12px; padding:1.5rem; }
+  .coach-roles { display:flex; flex-wrap:wrap; gap:.5rem; }
+  .coach-role-tag { background:#fff; border:1px solid var(--rule); border-radius:100px; padding:.3rem .85rem; font-size:12px; font-weight:600; color:var(--ink-2); transition:all .15s; }
+  .coach-role-tag:hover { border-color:#93c5fd; background:var(--blue-lt); color:var(--blue); }
+  .coaches-visual-label { font-size:11px; font-weight:700; color:var(--ink-4); letter-spacing:.08em; text-transform:uppercase; margin-bottom:.85rem; }
+  .persona-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .persona-card { background:#fff; border:1.5px solid var(--rule); border-radius:12px; padding:1.5rem; transition:border-color .2s,box-shadow .2s,transform .2s var(--ease); }
+  .persona-card:hover { border-color:#bfdbfe; box-shadow:var(--shadow); transform:translateY(-2px); }
+  .persona-icon { font-size:1.75rem; display:block; margin-bottom:.75rem; line-height:1; }
+  .persona-name { font-size:15px; font-weight:800; color:var(--ink); margin-bottom:.2rem; letter-spacing:-.02em; }
+  .persona-role-label { font-size:11px; font-weight:600; color:var(--ink-4); text-transform:uppercase; letter-spacing:.06em; margin-bottom:.65rem; }
+  .persona-desc { font-size:13.5px; color:var(--ink-3); line-height:1.7; }
+
+  /* ── FREE / PRICING ── */
+  .pricing { padding:5.5rem 0; border-bottom:1px solid var(--rule); background:#fafbff; }
+  .pricing-in { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; max-width:720px; }
+  .plan { background:#fff; border:1.5px solid var(--rule); border-radius:14px; padding:2rem; transition:box-shadow .2s; }
+  .plan:hover { box-shadow:var(--shadow); }
+  .plan-featured { border-color:var(--blue); }
+  .plan-tag { font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-4); margin-bottom:.75rem; }
+  .plan-featured .plan-tag { color:var(--blue); }
+  .plan-name { font-size:1.6rem; font-weight:800; letter-spacing:-.03em; color:var(--ink); margin-bottom:.25rem; }
+  .plan-price { font-size:2.25rem; font-weight:800; letter-spacing:-.04em; color:var(--ink); line-height:1; margin-bottom:.75rem; }
+  .plan-price span { font-size:1rem; color:var(--ink-3); font-weight:500; }
+  .plan-desc { font-size:14px; color:var(--ink-3); margin-bottom:1.5rem; line-height:1.65; }
+  .plan-items { display:flex; flex-direction:column; gap:.55rem; margin-bottom:1.75rem; }
+  .plan-item { display:flex; align-items:flex-start; gap:.6rem; font-size:13.5px; color:var(--ink-2); }
+  .plan-check { width:16px; height:16px; background:var(--green); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:8px; flex-shrink:0; margin-top:2px; }
+  .plan-featured .plan-check { background:var(--blue); }
+  .plan-btn { display:block; text-align:center; padding:.85rem; border-radius:9px; font-weight:700; font-size:14.5px; border:1.5px solid var(--rule); color:var(--ink-2); transition:all .15s; }
+  .plan-btn:hover { background:var(--rule-2); color:var(--ink); }
+  .plan-featured .plan-btn { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .plan-featured .plan-btn:hover { background:var(--blue-dk); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { padding:5.5rem 0; border-bottom:1px solid var(--rule); }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-top:3rem; }
+  .testi-card { background:#fff; border:1.5px solid var(--rule); border-radius:12px; padding:1.6rem; transition:box-shadow .2s; }
+  .testi-card:hover { box-shadow:var(--shadow); }
+  .testi-quote { font-size:14.5px; color:var(--ink-2); line-height:1.75; margin-bottom:1.25rem; font-style:italic; font-family:var(--serif); font-weight:600; }
+  .testi-author { display:flex; align-items:center; gap:.75rem; }
+  .testi-av { width:36px; height:36px; border-radius:50%; background:var(--blue-lt); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .testi-name { font-size:14px; font-weight:700; color:var(--ink); }
+  .testi-biz { font-size:12px; color:var(--ink-4); margin-top:.1rem; }
+
+  /* ── CTA ── */
+  .cta-band { padding:5.5rem 0; background:var(--blue); text-align:center; border-bottom:1px solid var(--rule); }
+  .cta-band h2 { font-size:clamp(2rem,4.5vw,3.25rem); font-weight:800; color:#fff; letter-spacing:-.03em; line-height:1.1; margin-bottom:1rem; }
+  .cta-band h2 .serif { font-family:var(--serif); font-style:italic; }
+  .cta-band p { font-size:17px; color:rgba(255,255,255,.8); margin-bottom:2.25rem; max-width:520px; margin-left:auto; margin-right:auto; line-height:1.7; }
+  .btn-white { display:inline-flex; align-items:center; gap:.5rem; background:#fff; color:var(--blue); font-weight:700; font-size:15px; padding:.9rem 2rem; border-radius:9px; transition:transform .15s,box-shadow .15s; }
+  .btn-white:hover { transform:translateY(-1px); box-shadow:0 8px 24px rgba(0,0,0,.2); }
+  .cta-fine { margin-top:1.1rem; font-size:13px; color:rgba(255,255,255,.55); }
+
+  /* ── ABOUT ── */
+  .about { padding:5rem 0; border-bottom:1px solid var(--rule); }
+  .about-in { display:grid; grid-template-columns:1fr 400px; gap:5rem; align-items:start; }
+  .about-title { font-size:1.75rem; font-weight:800; letter-spacing:-.03em; margin-bottom:1.25rem; line-height:1.2; }
+  .about-body { font-size:14.5px; color:var(--ink-2); line-height:1.85; margin-bottom:1rem; }
+  .info-box { background:var(--rule-2); border:1.5px solid var(--rule); border-radius:12px; overflow:hidden; }
+  .info-box-hd { background:#fff; border-bottom:1.5px solid var(--rule); padding:.8rem 1.2rem; font-size:11px; font-weight:700; color:var(--ink-3); letter-spacing:.08em; text-transform:uppercase; }
+  .info-row { display:grid; grid-template-columns:110px 1fr; gap:.75rem; padding:.65rem 1.2rem; border-bottom:1px solid var(--rule); font-size:13px; align-items:start; }
+  .info-row:last-child{border-bottom:none}
+  .info-key { color:var(--ink-4); font-weight:600; font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; padding-top:1px; }
+  .info-val { color:var(--ink-2); }
+  .info-val a { color:var(--blue); border-bottom:1px solid transparent; transition:border-color .15s; }
+  .info-val a:hover { border-color:var(--blue); }
+
+  /* ── FOOTER ── */
+  footer { padding:2rem 0; background:var(--ink); }
+  .foot-in { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+  .foot-logo { font-size:14px; font-weight:800; color:#fff; letter-spacing:-.02em; }
+  .foot-logo .ai { color:#93c5fd; }
+  .foot-links { display:flex; gap:1.5rem; }
+  .foot-links a { font-size:13px; color:#9ca3af; transition:color .15s; }
+  .foot-links a:hover { color:#fff; }
+  .foot-copy { font-size:12px; color:#6b7280; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:960px){
+    .hero-in{grid-template-columns:1fr}
+    .app-card{max-width:440px}
+    .numbers-in{grid-template-columns:repeat(2,1fr)}
+    .num-cell:nth-child(2){border-right:none}
+    .solves-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr;gap:1.75rem}
+    .step-connector{display:none}
+    .pillars-grid{grid-template-columns:1fr}
+    .coaches-intro{grid-template-columns:1fr;gap:2rem}
+    .persona-grid{grid-template-columns:1fr}
+    .pricing-in{grid-template-columns:1fr;max-width:420px}
+    .testi-grid{grid-template-columns:1fr}
+    .about-in{grid-template-columns:1fr;gap:2.5rem}
+  }
+  @media(max-width:640px){
+    .nav-links{display:none}
+    h1{font-size:2.15rem}
+    .hero{padding:6rem 0 3.5rem}
+    .numbers-in{grid-template-columns:repeat(2,1fr)}
+    .foot-in{flex-direction:column;align-items:flex-start}
+  }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-in">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">☑</div>
+      Founders<span class="logo-ai">CheckList</span>.AI
+    </a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#coaches">AI Coaches</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="#get-started" class="nav-cta">Get Started Free →</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-in">
+      <div>
+        <div class="hero-eyebrow r0"><span class="eyebrow-dot"></span> Built for Entrepreneurs</div>
+        <h1 class="r1">The action partner<br/>your business <span class="serif">needs today.</span></h1>
+        <p class="hero-desc r2">
+          Stop wondering what to do next. FoundersCheckList.AI gives you 
+          pre-built checklists for any business goal, AI coaches for every role,
+          and connections to 100+ real-world tools and experts — 
+          all in one place that's free to use.
+        </p>
+        <div class="hero-btns r3">
+          <a href="#get-started" class="btn-primary">Start for Free — No signup hassle →</a>
+        </div>
+        <div class="hero-free r3">
+          <div class="hero-free-badge">FREE</div>
+          Most features are completely free. Upgrade only when you need more.
+        </div>
+        <div class="trust-row r4">
+          <div class="trust-item"><div class="trust-ic">✓</div> No credit card</div>
+          <div class="trust-item"><div class="trust-ic">✓</div> Google Calendar sync</div>
+          <div class="trust-item"><div class="trust-ic">✓</div> Ready in 3 minutes</div>
+          <div class="trust-item"><div class="trust-ic">✓</div> 1,000 pre-built checklists</div>
+        </div>
+      </div>
+
+      <div class="r3">
+        <div class="app-card">
+          <div class="app-hd">
+            <div class="app-hd-ic">☑️</div>
+            <span class="app-hd-title">FoundersCheckList.AI</span>
+          </div>
+          <div class="app-bd">
+            <div class="app-sec">
+              <div class="app-sec-hd">Todo <span>∧</span></div>
+              <div class="app-task">
+                <div class="app-cb"></div>
+                <span class="app-lbl">Sales — Follow up 5 leads</span>
+                <div class="app-meta">Mar 7 ☆</div>
+              </div>
+              <div class="app-task">
+                <div class="app-cb"></div>
+                <span class="app-lbl">HR — Post open positions</span>
+                <div class="app-meta">Mar 7 ☆</div>
+              </div>
+            </div>
+            <div class="app-sec">
+              <div class="app-sec-hd">Done <span>∧</span></div>
+              <div class="app-task done">
+                <div class="app-cb">✓</div>
+                <span class="app-lbl">Make my website</span>
+                <div class="app-meta">Mar 7</div>
+              </div>
+              <div class="app-task done">
+                <div class="app-cb">✓</div>
+                <span class="app-lbl">Business Plan</span>
+                <div class="app-meta">Mar 7</div>
+              </div>
+            </div>
+            <div class="app-chips">
+              <span class="app-chip chip-a">❤️ Advisor</span>
+              <span class="app-chip chip-c">💲 CFO</span>
+              <span class="app-chip chip-s">🔥 Sales Coach</span>
+            </div>
+            <div class="app-ai">
+              <span class="hot">Your Sales and HR tasks need action today.</span>
+              You have the foundation — now it's time to hire and sell. Don't let momentum stall.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div class="numbers">
+  <div class="wrap">
+    <div class="numbers-in">
+      <div class="num-cell">
+        <div class="num-big">1,000<span>+</span></div>
+        <div class="num-label">Pre-built checklists</div>
+      </div>
+      <div class="num-cell">
+        <div class="num-big">100<span>+</span></div>
+        <div class="num-label">AI coach personas</div>
+      </div>
+      <div class="num-cell">
+        <div class="num-big">100<span>+</span></div>
+        <div class="num-label">Integrations & partners</div>
+      </div>
+      <div class="num-cell">
+        <div class="num-big">$<span>0</span></div>
+        <div class="num-label">To get started</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT IT SOLVES -->
+<section class="solves" id="features">
+  <div class="wrap">
+    <div class="sec-tag">Your current challenge</div>
+    <h2 class="sec-title">Whatever you're facing right now,<br/><span class="serif">there's a checklist for it.</span></h2>
+    <p class="sec-sub">FoundersCheckList.AI is designed around one idea: give entrepreneurs the right action at the right time. Not generic advice — the specific step that solves today's problem.</p>
+    <div class="solves-grid">
+      <div class="solve-card">
+        <span class="solve-icon">🚀</span>
+        <div>
+          <div class="solve-title">Launching your business</div>
+          <p class="solve-desc">Business formation, permits, banking, insurance, first website — step by step, in the right order, with the right people connected.</p>
+        </div>
+      </div>
+      <div class="solve-card">
+        <span class="solve-icon">💰</span>
+        <div>
+          <div class="solve-title">Getting your first customers</div>
+          <p class="solve-desc">Sales outreach templates, pricing strategy checklists, referral playbooks — pre-built for your industry and stage.</p>
+        </div>
+      </div>
+      <div class="solve-card">
+        <span class="solve-icon">🏦</span>
+        <div>
+          <div class="solve-title">Raising funding or getting a loan</div>
+          <p class="solve-desc">SBA loan prep, investor outreach, pitch deck checklists — connected directly to financial institutions and advisors who can help.</p>
+        </div>
+      </div>
+      <div class="solve-card">
+        <span class="solve-icon">👥</span>
+        <div>
+          <div class="solve-title">Hiring your first employee</div>
+          <p class="solve-desc">Job postings, onboarding docs, payroll setup, compliance — the complete checklist with links to the right HR tools and government forms.</p>
+        </div>
+      </div>
+      <div class="solve-card">
+        <span class="solve-icon">📊</span>
+        <div>
+          <div class="solve-title">Getting your finances in order</div>
+          <p class="solve-desc">Bookkeeping setup, tax prep, cash flow tracking — with direct connections to accountants, CPAs, and financial tools that work with your business size.</p>
+        </div>
+      </div>
+      <div class="solve-card">
+        <span class="solve-icon">⚙️</span>
+        <div>
+          <div class="solve-title">Scaling operations</div>
+          <p class="solve-desc">SOPs, systems setup, team delegation, tool integration — the checklist that turns a one-person hustle into a real, repeatable business.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-tag">How it works</div>
+    <h2 class="sec-title">Up and running in<br/><span class="serif">under 3 minutes.</span></h2>
+    <p class="sec-sub">No complicated setup. No learning curve. Everything is pre-built and waiting for you.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-connector"></div>
+        <div class="step-num">1</div>
+        <div class="step-title">Pick your challenge</div>
+        <p class="step-desc">Tell us what you're working on — launching, selling, hiring, funding, or anything else. Or just browse 1,000+ pre-built checklists by goal and industry.</p>
+      </div>
+      <div class="step">
+        <div class="step-connector"></div>
+        <div class="step-num">2</div>
+        <div class="step-title">Get your action list</div>
+        <p class="step-desc">Your checklist is ready instantly — organized, prioritized, and connected to the tools, experts, and institutions that can actually help you complete each step.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Execute with your AI coach</div>
+        <p class="step-desc">Choose an AI coach who fits your situation. They'll analyze your checklist, push you on what matters most, and learn your patterns to give better advice over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 PILLARS -->
+<section class="pillars">
+  <div class="wrap">
+    <div class="sec-tag">What makes it different</div>
+    <h2 class="sec-title">AI is powerful. But <span class="serif">real results</span><br/>need more than AI alone.</h2>
+    <p class="sec-sub">FoundersCheckList.AI combines AI intelligence with structured checklists and real-world connections — because some problems need a human touch too.</p>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-accent pa-blue"></div>
+        <div class="pillar-num"><span class="pillar-num-highlight">1,000</span></div>
+        <div class="pillar-title">Pre-Built Checklists</div>
+        <p class="pillar-desc">Every checklist is structured by entrepreneurs who've done it. No blank pages, no guessing where to start. Just open and execute.</p>
+        <div class="pillar-examples">
+          <div class="pillar-ex"><div class="pillar-ex-dot"></div><span>Business launch by state & industry</span></div>
+          <div class="pillar-ex"><div class="pillar-ex-dot"></div><span>Sales playbooks for B2B and B2C</span></div>
+          <div class="pillar-ex"><div class="pillar-ex-dot"></div><span>Funding prep for SBA, angels, VCs</span></div>
+          <div class="pillar-ex"><div class="pillar-ex-dot"></div><span>HR, compliance, and hiring guides</span></div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-accent pa-purple"></div>
+        <div class="pillar-num" style="color:#ede9fe"><span style="color:#6b3ef0">100</span></div>
+        <div class="pillar-title">AI Coach Personas</div>
+        <p class="pillar-desc">100 AI coaches across every role and industry. Each one is trained on entrepreneurial behavior patterns — not just general knowledge.</p>
+        <div class="pillar-examples">
+          <div class="pillar-ex" style="--c:#6b3ef0"><div class="pillar-ex-dot" style="background:#6b3ef0"></div><span>Industry-specific advisors (retail, tech, services…)</span></div>
+          <div class="pillar-ex"><div class="pillar-ex-dot" style="background:#6b3ef0"></div><span>Role-based coaches (CFO, CMO, COO, legal…)</span></div>
+          <div class="pillar-ex"><div class="pillar-ex-dot" style="background:#6b3ef0"></div><span>Learns your action patterns over time</span></div>
+          <div class="pillar-ex"><div class="pillar-ex-dot" style="background:#6b3ef0"></div><span>Pushes you when you're stalling</span></div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-accent pa-green"></div>
+        <div class="pillar-num" style="color:#dcfce7"><span style="color:var(--green)">100+</span></div>
+        <div class="pillar-title">Real-World Connections</div>
+        <p class="pillar-desc">AI alone can't file your LLC, approve your loan, or write your employment contract. We connect you to the people and tools that can.</p>
+        <div class="pillar-examples">
+          <div class="pillar-ex"><div class="pillar-ex-dot" style="background:var(--green)"></div><span>Government agencies & business portals</span></div>
+          <div class="pillar-ex"><div class="pillar-ex-dot" style="background:var(--green)"></div><span>Banks, lenders & financial institutions</span></div>
+          <div class="pillar-ex"><div class="pillar-ex-dot" style="background:var(--green)"></div><span>Accountants, lawyers & consultants</span></div>
+          <div class="pillar-ex"><div class="pillar-ex-dot" style="background:var(--green)"></div><span>Business tools (CRM, payroll, accounting…)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI COACHES -->
+<section class="coaches" id="coaches">
+  <div class="wrap">
+    <div class="coaches-intro">
+      <div>
+        <div class="sec-tag">100 AI Coaches</div>
+        <h2 class="sec-title">The right expert voice<br/><span class="serif">for every situation.</span></h2>
+        <p class="sec-sub" style="margin-bottom:0">Switch between coaches instantly. Each one is built around a specific role, industry, or business challenge — and gets smarter about your habits the more you use it.</p>
+      </div>
+      <div class="coaches-visual">
+        <div class="coaches-visual-label">Sample coach roles available</div>
+        <div class="coach-roles">
+          <span class="coach-role-tag">❤️ Advisor</span>
+          <span class="coach-role-tag">💲 CFO</span>
+          <span class="coach-role-tag">🔥 Sales Coach</span>
+          <span class="coach-role-tag">⚖️ Legal</span>
+          <span class="coach-role-tag">📢 Marketing</span>
+          <span class="coach-role-tag">👥 HR</span>
+          <span class="coach-role-tag">🏗️ Operations</span>
+          <span class="coach-role-tag">🛒 E-commerce</span>
+          <span class="coach-role-tag">🍽️ Restaurant</span>
+          <span class="coach-role-tag">🏠 Real Estate</span>
+          <span class="coach-role-tag">💻 SaaS</span>
+          <span class="coach-role-tag">🔧 Contractor</span>
+          <span class="coach-role-tag">+ 88 more</span>
+        </div>
+      </div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <span class="persona-icon">❤️</span>
+        <div class="persona-name">The Advisor</div>
+        <div class="persona-role-label">Strategic Thinking</div>
+        <p class="persona-desc">Sees your full picture. Flags blind spots, challenges bad assumptions, and makes sure you're working on the right things — not just staying busy.</p>
+      </div>
+      <div class="persona-card">
+        <span class="persona-icon">💲</span>
+        <div class="persona-name">The CFO</div>
+        <div class="persona-role-label">Financial Focus</div>
+        <p class="persona-desc">Cuts through the noise and looks at what matters for your bottom line. Protects your runway, grows revenue, and keeps your numbers honest.</p>
+      </div>
+      <div class="persona-card">
+        <span class="persona-icon">🔥</span>
+        <div class="persona-name">Sales Coach</div>
+        <div class="persona-role-label">Growth & Revenue</div>
+        <p class="persona-desc">Focused on pipeline, outreach, and closing. Keeps you accountable and bluntly reminds you that revenue is the solution to most business problems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-tag">Pricing</div>
+    <h2 class="sec-title">Free to start.<br/><span class="serif">Upgrade when you need more.</span></h2>
+    <p class="sec-sub">Most entrepreneurs never need to pay anything. The free plan covers everything you need to get moving.</p>
+    <div class="pricing-in">
+      <div class="plan">
+        <div class="plan-tag">Free Plan</div>
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0 <span>forever</span></div>
+        <p class="plan-desc">Everything you need to start taking action. No credit card, no time limit.</p>
+        <div class="plan-items">
+          <div class="plan-item"><div class="plan-check">✓</div> Access to 1,000+ pre-built checklists</div>
+          <div class="plan-item"><div class="plan-check">✓</div> 3 AI coach personas</div>
+          <div class="plan-item"><div class="plan-check">✓</div> Google Calendar sync</div>
+          <div class="plan-item"><div class="plan-check">✓</div> 100+ tool & partner connections</div>
+          <div class="plan-item"><div class="plan-check">✓</div> Progress tracking</div>
+        </div>
+        <a href="#get-started" class="plan-btn">Get Started Free →</a>
+      </div>
+      <div class="plan plan-featured">
+        <div class="plan-tag">Plus Plan</div>
+        <div class="plan-name">Plus</div>
+        <div class="plan-price">$X <span>/ month</span></div>
+        <p class="plan-desc">For entrepreneurs who use it heavily and want the full experience.</p>
+        <div class="plan-items">
+          <div class="plan-item"><div class="plan-check">✓</div> Everything in Free</div>
+          <div class="plan-item"><div class="plan-check">✓</div> All 100 AI coach personas</div>
+          <div class="plan-item"><div class="plan-check">✓</div> Unlimited AI coaching sessions</div>
+          <div class="plan-item"><div class="plan-check">✓</div> AI learns your action patterns</div>
+          <div class="plan-item"><div class="plan-check">✓</div> Custom checklists & templates</div>
+          <div class="plan-item"><div class="plan-check">✓</div> Priority support</div>
+        </div>
+        <a href="#get-started" class="plan-btn">Start Free Trial →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="wrap">
+    <div class="sec-tag">What business owners say</div>
+    <h2 class="sec-title">From entrepreneurs<br/><span class="serif">who've been there.</span></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">"I used to spend my mornings figuring out what to work on. Now I open the app, see my list, and just start. That mental relief alone is worth it."</p>
+        <div class="testi-author">
+          <div class="testi-av">👩</div>
+          <div>
+            <div class="testi-name">Sarah M.</div>
+            <div class="testi-biz">Boutique Owner, Austin TX</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"The CFO coach told me to stop ignoring my accounts receivable. Uncomfortable to hear — but it saved my cash flow that month. Real advice, not fluff."</p>
+        <div class="testi-author">
+          <div class="testi-av">👨</div>
+          <div>
+            <div class="testi-name">Marcus T.</div>
+            <div class="testi-biz">Contractor, Phoenix AZ</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"I was skeptical of AI tools, but this one actually gets what it's like to run a small business. The checklists alone saved me weeks of research."</p>
+        <div class="testi-author">
+          <div class="testi-av">👩</div>
+          <div>
+            <div class="testi-name">Linda K.</div>
+            <div class="testi-biz">Restaurant Owner, Chicago IL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band" id="get-started">
+  <div class="wrap">
+    <h2>Your next move is already <span class="serif">waiting for you.</span></h2>
+    <p>1,000 checklists. 100 AI coaches. Free to use. Start in 3 minutes — no setup required.</p>
+    <a href="#" class="btn-white">Get Started Free →</a>
+    <div class="cta-fine">Free plan available · No credit card · Google Calendar sync included</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-in">
+      <div>
+        <div class="sec-tag">About</div>
+        <h2 class="about-title">Built on what entrepreneurs actually need.</h2>
+        <p class="about-body">
+          FoundersCheckList.AI was designed around one frustration shared by thousands 
+          of business owners: too many options, not enough clarity on what to do right now. 
+          We're not here to give you another productivity app. We're here to be 
+          your action partner — the tool that closes the gap between knowing and doing.
+        </p>
+        <p class="about-body">
+          The difference is our hybrid approach. AI can analyze, suggest, and push you — 
+          but filing permits, getting a loan, or hiring an employee requires real humans 
+          and real institutions. We've built those connections directly into the product.
+        </p>
+        <p class="about-body" style="color:var(--ink-3);font-size:14px;">
+          Powered by <strong style="color:var(--ink)">EntreBooster</strong> — 
+          an AI engine trained on entrepreneurial data to turn uncertainty into action.
+        </p>
+      </div>
+      <div>
+        <div class="info-box">
+          <div class="info-box-hd">Service Information</div>
+          <div class="info-row">
+            <span class="info-key">Service</span>
+            <span class="info-val">FoundersCheckList.AI</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Website</span>
+            <span class="info-val"><a href="https://fonderschecmlist.ai" target="_blank">fonderschecmlist.ai</a></span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Category</span>
+            <span class="info-val">AI Business Tools · Entrepreneur Productivity</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Platform</span>
+            <span class="info-val">Web App · Mobile-Optimized</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Connects to</span>
+            <span class="info-val">Google Calendar · 100+ tools & partners</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Language</span>
+            <span class="info-val">English</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Contact</span>
+            <span class="info-val"><a href="mailto:hello@fonderschecmlist.ai">hello@fonderschecmlist.ai</a></span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Privacy</span>
+            <span class="info-val"><a href="/privacy">Privacy Policy</a></span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Terms</span>
+            <span class="info-val"><a href="/terms">Terms of Service</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-in">
+    <div class="foot-logo">Founders<span class="ai">CheckList</span>.AI</div>
+    <div class="foot-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:hello@fonderschecmlist.ai">Contact</a>
+    </div>
+    <span class="foot-copy">© 2025 FoundersCheckList.AI · fonderschecmlist.ai</span>
+  </div>
+</footer>
+
+</body>
+</html>
